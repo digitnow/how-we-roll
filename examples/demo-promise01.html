@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo Promise 01</title>
+    <style>
+     /* Her kan stil defineres (vi skal bruke Cascading Style Sheets) */
+
+    </style>
+ <!--
+
+    [[[[[[[[     [[[[[[[[        [[[[   [[[[   [[[[  [[[[
+    [::::::[    [::[             [::[   [::[   [::[  [::[
+      [::[      [::[             [::[   [::[   [::[  [::[
+      [::[       [::::[   [[[[   [::[   [::[   [[[[[[[[[[
+      [::[          [::[         [::[   [::[         [::[
+    [::::::[        [::[         [::[   [::[         [::[
+    [[[[[[[[   [[[[[[[[          [[[[   [[[[         [[[[
+
+ -->
+</head>
+<body>
+  <!-- Her skrives alt innhold, som man ønsker å "tegne" på skjermen. -->
+  <section>
+      <h3>Prototype</h3>
+  </section>
+  <script>
+    // Basert på https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all (sist sett 2021-10-17)
+    // Eksempel som illustrerer hvordan lovnader funksjonerer
+    const promise1 = Promise.resolve(3);
+    const promise2 = 42;
+    const promise3 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 2000, 'foo');
+    });
+    Promise.all([
+        //promise1, promise2, promise3 // gjør alle fetch her
+        fetch("https://bacit.info/hwr/20211016122026-481951cc9d1c250a007e78d42a609641.json"),
+        fetch("fetchex02.json"),
+        fetch("fetchex03.json")
+    ]).then((values) => {
+        console.log(values[0].json().resolve);
+    });
+    // expected output: Array [3, 42, "foo"]
+
+     // Data fra en JSON-fil til objekter i JavaScript
+     const minJSON = '{"dorn": "60"}';
+     // Se https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse (sett 2021-10-07)
+     const jsobj = JSON.parse(minJSON);
+     console.log(jsobj); // Object
+     console.log(jsobj.dorn);
+     //let html_dorn = document.getElementById("dorn");
+     //html_dorn.textContent = jsobj.dorn;
+
+     // Mock JSON fra fil
+    fetch("https://bacit.info/hwr/20211016122026-481951cc9d1c250a007e78d42a609641.json")
+    .then(response => console.log(response.json())) // Promise objekt
+    .then(data => {
+      console.log(data);
+    });
+    fetch("fetchex02.json")
+    .then(response => response.json()) // Promise objekt
+    .then(data => {
+      console.log(data);
+    });
+    fetch("fetchex03.json")
+    .then(response => response.json()) // Promise objekt
+    .then(data => {
+      console.log(data);
+    });
+    fetch("fetchex04.json")
+    .then(response => response.json()) // Promise objekt
+    .then(data => {
+      console.log(data);
+    });
+
+  </script>
+</body>
+</html>

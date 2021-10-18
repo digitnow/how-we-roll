@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo Promise 03</title>
+    <style>
+     /* Her kan stil defineres (vi skal bruke Cascading Style Sheets) */
+
+    </style>
+ <!--
+
+    [[[[[[[[     [[[[[[[[        [[[[   [[[[   [[[[  [[[[
+    [::::::[    [::[             [::[   [::[   [::[  [::[
+      [::[      [::[             [::[   [::[   [::[  [::[
+      [::[       [::::[   [[[[   [::[   [::[   [[[[[[[[[[
+      [::[          [::[         [::[   [::[         [::[
+    [::::::[        [::[         [::[   [::[         [::[
+    [[[[[[[[   [[[[[[[[          [[[[   [[[[         [[[[
+
+ -->
+</head>
+<body>
+  <!-- Her skrives alt innhold, som man ønsker å "tegne" på skjermen. -->
+  <section>
+      <h3>Prototype</h3>
+  </section>
+  <script>
+  // https://bacit.info/hwr/20211016122026-481951cc9d1c250a007e78d42a609641.json
+  const urls = ['fetchex01.json', 'fetchex02.json'];
+
+  async function collect() {
+    const requests = urls.map((url) => fetch(url));
+    console.log(requests);
+    const responses = await Promise.all(requests);
+    console.log(responses);
+    const promises = responses.map((response) => response.text());
+    console.log(promises);
+    return await Promise.all(promises);
+  }
+
+  console.log(collect());
+  </script>
+</body>
+</html>

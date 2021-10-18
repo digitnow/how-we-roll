@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo Promise 02</title>
+    <style>
+     /* Her kan stil defineres (vi skal bruke Cascading Style Sheets) */
+
+    </style>
+ <!--
+
+    [[[[[[[[     [[[[[[[[        [[[[   [[[[   [[[[  [[[[
+    [::::::[    [::[             [::[   [::[   [::[  [::[
+      [::[      [::[             [::[   [::[   [::[  [::[
+      [::[       [::::[   [[[[   [::[   [::[   [[[[[[[[[[
+      [::[          [::[         [::[   [::[         [::[
+    [::::::[        [::[         [::[   [::[         [::[
+    [[[[[[[[   [[[[[[[[          [[[[   [[[[         [[[[
+
+ -->
+</head>
+<body>
+  <!-- Her skrives alt innhold, som man ønsker å "tegne" på skjermen. -->
+  <section>
+      <h3>Prototype</h3>
+  </section>
+  <script>
+  // https://bacit.info/hwr/20211016122026-481951cc9d1c250a007e78d42a609641.json
+    const urls = ['fetchex01.json',
+  'fetchex02.json'];
+
+Promise.all(urls.map(url => fetch(url)
+  .then(response => response.json())
+  .then(responseBody => responseBody.cora)))
+  .then(coras => {
+    console.log(coras);
+  })
+  .catch(err => {
+    console.error('Failed to fetch one or more of these URLs:');
+    console.log(urls);
+    console.error(err);
+  });
+  </script>
+</body>
+</html>
